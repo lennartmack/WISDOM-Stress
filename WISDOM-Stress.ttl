@@ -1,0 +1,947 @@
+@prefix : <http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix schema: <https://schema.org/> .
+@base <http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/> .
+
+<http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress> rdf:type owl:Ontology ;
+                                                                      owl:imports sosa: .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAnnotationRecord
+:hasAnnotationRecord rdf:type owl:ObjectProperty ;
+                     rdfs:domain :PhysiologicalRecord ;
+                     rdfs:range :AnnotationRecord ;
+                     rdfs:comment "Links a physiological record to its annotation record."@en ;
+                     rdfs:label "has annotation record"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAssociatedActivity
+:hasAssociatedActivity rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Stressor ;
+                       rdfs:range :Activity ;
+                       rdfs:comment "Links a stressor to the activity or experimental phase associated with it."@en ;
+                       rdfs:label "has associated activity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAssociatedStressor
+:hasAssociatedStressor rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Activity ;
+                       rdfs:range :Stressor ;
+                       rdfs:comment "links an activity segment to the stressor represented by the activity"@en ;
+                       rdfs:label "has Associated Stressor" .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasObservableProperty
+:hasObservableProperty rdf:type owl:ObjectProperty ;
+                       rdfs:domain owl:Thing ;
+                       rdfs:range sosa:ObservableProperty ;
+                       rdfs:comment "Links an entity to an observable property."@en ;
+                       rdfs:label "has observable property"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasObservation
+:hasObservation rdf:type owl:ObjectProperty ;
+                owl:inverseOf :observedDuringActivity ;
+                rdfs:domain :Activity ;
+                rdfs:range sosa:Observation ;
+                rdfs:comment "Links an activity or experimental phase to an observation made during it."@en ;
+                rdfs:label "has observation"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasPhase
+:hasPhase rdf:type owl:ObjectProperty ;
+          rdfs:domain :AnnotationRecord ;
+          rdfs:range :Activity ;
+          rdfs:comment "links an annotation record to an annotated activity segment"@en ;
+          rdfs:label "has Phase" .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasRecord
+:hasRecord rdf:type owl:ObjectProperty ;
+           rdfs:domain sosa:FeatureOfInterest ;
+           rdfs:range :PhysiologicalRecord ;
+           rdfs:comment "Links a study subject or feature of interest to a physiological record."@en ;
+           rdfs:label "has record"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasSignalChannel
+:hasSignalChannel rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isSignalChannelOf ;
+                  rdfs:domain :PhysiologicalRecord ;
+                  rdfs:range :SignalChannel ;
+                  rdfs:comment "Links a physiological record to one of its signal channels."@en ;
+                  rdfs:label "has signal channel"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasSourceChannel
+:hasSourceChannel rdf:type owl:ObjectProperty ;
+                  rdfs:domain sosa:Observation ;
+                  rdfs:range :SignalChannel ;
+                  rdfs:comment "Links an observation to the signal channel from which it was derived."@en ;
+                  rdfs:label "has source channel"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasSourceRecord
+:hasSourceRecord rdf:type owl:ObjectProperty ;
+                 rdfs:domain sosa:Observation ;
+                 rdfs:range :PhysiologicalRecord ;
+                 rdfs:comment "Links an observation to the physiological record from which it was derived."@en ;
+                 rdfs:label "has source record"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasStressCondition
+:hasStressCondition rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Activity ;
+                    rdfs:range :StressCondition ;
+                    rdfs:comment "Links an activity or experimental phase to the stress condition represented during that phase."@en ;
+                    rdfs:label "has stress condition"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/isCausedBy
+:isCausedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain owl:Thing ;
+            rdfs:range :Stressor ;
+            rdfs:comment "Links an entity to a stressor that causes or contributes to it."@en ;
+            rdfs:label "is caused by"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/isSignalChannelOf
+:isSignalChannelOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :SignalChannel ;
+                   rdfs:range :PhysiologicalRecord ;
+                   rdfs:comment "Links a signal channel to its physiological record."@en ;
+                   rdfs:label "is signal channel of"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/madeByBiomarkerAssay
+:madeByBiomarkerAssay rdf:type owl:ObjectProperty ;
+                      rdfs:domain sosa:Observation ;
+                      rdfs:range :BiomarkerAssay ;
+                      rdfs:comment "Links an observation to the biomarker assay by which it was made."@en ;
+                      rdfs:label "made by biomarker assay"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/madeByObserver
+:madeByObserver rdf:type owl:ObjectProperty ;
+                rdfs:domain sosa:Observation ;
+                rdfs:range :Observer ;
+                rdfs:comment "Links an observation to the observer by whom it was made."@en ;
+                rdfs:label "made by observer"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/makesAnAnnotation
+:makesAnAnnotation rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Observer ;
+                   rdfs:range :AnnotationRecord ;
+                   rdfs:comment "Links an observer to an annotation record produced by that observer."@en ;
+                   rdfs:label "makes an annotation"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/observedDuringActivity
+:observedDuringActivity rdf:type owl:ObjectProperty ;
+                        rdfs:domain sosa:Observation ;
+                        rdfs:range :Activity ;
+                        rdfs:comment "Links an observation to the activity or experimental phase during which it was made."@en ;
+                        rdfs:label "observed during activity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/representsObservableProperty
+:representsObservableProperty rdf:type owl:ObjectProperty ;
+                              rdfs:domain :SignalChannel ;
+                              rdfs:range sosa:ObservableProperty ;
+                              rdfs:comment "Links a signal channel to the observable property represented by the channel."@en ;
+                              rdfs:label "represents observable property"@en .
+
+
+###  http://www.w3.org/ns/sosa/hosts
+sosa:hosts rdfs:domain sosa:Platform ;
+           rdfs:range sosa:Sensor .
+
+
+###  http://www.w3.org/ns/sosa/isHostedBy
+sosa:isHostedBy rdfs:domain sosa:Sensor ;
+                rdfs:range sosa:Platform .
+
+
+###  http://www.w3.org/ns/sosa/isObservedBy
+sosa:isObservedBy rdfs:domain sosa:ObservableProperty ;
+                  rdfs:range sosa:Sensor .
+
+
+###  http://www.w3.org/ns/sosa/madeBySensor
+sosa:madeBySensor rdfs:domain sosa:Observation ;
+                  rdfs:range sosa:Sensor .
+
+
+###  http://www.w3.org/ns/sosa/madeObservation
+sosa:madeObservation rdfs:domain sosa:Sensor ;
+                     rdfs:range sosa:Observation .
+
+
+###  http://www.w3.org/ns/sosa/observes
+sosa:observes rdfs:domain sosa:Sensor ;
+              rdfs:range sosa:ObservableProperty .
+
+
+###  https://schema.org/diagnosis
+schema:diagnosis rdf:type owl:ObjectProperty ;
+                 rdfs:range schema:MedicalCondition ;
+                 rdfs:label "diagnosis"@en .
+
+
+###  https://schema.org/drug
+schema:drug rdf:type owl:ObjectProperty ;
+            rdfs:range schema:Drug ;
+            rdfs:label "drug"@en .
+
+
+###  https://schema.org/healthCondition
+schema:healthCondition rdf:type owl:ObjectProperty ;
+                       rdfs:range schema:MedicalCondition ;
+                       rdfs:label "healthCondition"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAge
+:hasAge rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Subject ;
+        rdfs:range xsd:integer ;
+        rdfs:label "has age"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAnnotationTimeStamp
+:hasAnnotationTimeStamp rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :AnnotationRecord ;
+                        rdfs:range xsd:dateTime ;
+                        rdfs:comment "Timestamp associated with an Annotation Record made by a Human Observer during a stress experiment" ;
+                        rdfs:label "has Annotation Time Stamp"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasAssayTimestamp
+:hasAssayTimestamp rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :BiomarkerAssay ;
+                   rdfs:range xsd:dateTime ;
+                   rdfs:comment "Timestamp indicating when a biomarker assay was performed or recorded."@en ;
+                   rdfs:label "has assay timestamp"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasChannelName
+:hasChannelName rdf:type owl:DatatypeProperty ;
+                rdfs:domain :SignalChannel ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Name of a signal channel."@en ;
+                rdfs:label "has channel name"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasDescription
+:hasDescription rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Activity ;
+                rdfs:range xsd:string ;
+                rdfs:label "has Description"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasDurationSeconds
+:hasDurationSeconds rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Activity ;
+                    rdfs:range xsd:decimal ;
+                    rdfs:comment "Duration of an activity or experimental phase expressed in seconds."@en ;
+                    rdfs:label "has duration in seconds"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasEndSample
+:hasEndSample rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Activity ;
+              rdfs:range xsd:integer ;
+              rdfs:label "has end sample"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasEndTimeSeconds
+:hasEndTimeSeconds rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Activity ;
+                   rdfs:range xsd:decimal ;
+                   rdfs:label "has end time in seconds"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasFileFormat
+:hasFileFormat rdf:type owl:DatatypeProperty ;
+               rdfs:domain :PhysiologicalRecord ;
+               rdfs:range xsd:string ;
+               rdfs:label "has file format"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasFileName
+:hasFileName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :PhysiologicalRecord ;
+             rdfs:range xsd:string ;
+             rdfs:label "has file name"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasGender
+:hasGender rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Subject ;
+           rdfs:range xsd:string ;
+           rdfs:label "has gender"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasHeightCm
+:hasHeightCm rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Subject ;
+             rdfs:range xsd:decimal ;
+             rdfs:label "has height in centimeters"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasHumidity
+:hasHumidity rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Humidity ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Humidity value associated with a humidity observable property."@en ;
+             rdfs:label "has humidity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasIntensity
+:hasIntensity rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Activity ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Qualitative intensity of an activity or experimental phase, for example low, moderate, or high."@en ;
+              rdfs:label "has intensity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasNote
+:hasNote rdf:type owl:DatatypeProperty ;
+         rdfs:domain :AnnotationRecord ;
+         rdfs:range xsd:string ;
+         rdfs:comment "A note associated with an annotation record made by a human observer during a stress experiment."@en ;
+         rdfs:label "has note"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasNumberOfChannels
+:hasNumberOfChannels rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :PhysiologicalRecord ;
+                     rdfs:range xsd:integer ;
+                     rdfs:comment "Number of signal channels in a physiological record."@en ;
+                     rdfs:label "has number of channels"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasNumberOfSamples
+:hasNumberOfSamples rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :PhysiologicalRecord ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "Number of samples in a physiological record."@en ;
+                    rdfs:label "has number of samples"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasOutsideTemperature
+:hasOutsideTemperature rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :OutsideTemperature ;
+                       rdfs:range xsd:string ;
+                       rdfs:comment "Outside or ambient temperature value associated with an outside temperature observable property."@en ;
+                       rdfs:label "has outside temperature"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasReference
+:hasReference rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Activity ;
+              rdfs:range xsd:anyURI ;
+              rdfs:label "has Reference"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasSamplingFrequencyHz
+:hasSamplingFrequencyHz rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :SignalChannel ;
+                        rdfs:range xsd:decimal ;
+                        rdfs:comment "Sampling frequency of a signal channel expressed in hertz."@en ;
+                        rdfs:label "has sampling frequency in hertz"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasStartSample
+:hasStartSample rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Activity ;
+                rdfs:range xsd:integer ;
+                rdfs:label "has start sample"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasStartTimeSeconds
+:hasStartTimeSeconds rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Activity ;
+                     rdfs:range xsd:decimal ;
+                     rdfs:label "has start time in seconds"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasTimestamp
+:hasTimestamp rdf:type owl:DatatypeProperty ;
+              rdfs:domain :TimeSeriesObservation ;
+              rdfs:range xsd:dateTime ;
+              rdfs:comment "Timestamp associated with an individual time-series observation, for example a heart-rate, heart-rate-variability, EDA, SpO2, or temperature observation."@en ;
+              rdfs:label "has timestamp"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasUnit
+:hasUnit rdf:type owl:DatatypeProperty ;
+         rdfs:domain :SignalChannel ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Unit used by a signal channel."@en ;
+         rdfs:label "has unit"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasWeightKg
+:hasWeightKg rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Subject ;
+             rdfs:range xsd:decimal ;
+             rdfs:label "has weight in kilograms"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasWindowEndSeconds
+:hasWindowEndSeconds rdf:type owl:DatatypeProperty ;
+                     rdfs:domain sosa:Observation ;
+                     rdfs:range xsd:decimal ;
+                     rdfs:label "has observation window end in seconds"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/hasWindowStartSeconds
+:hasWindowStartSeconds rdf:type owl:DatatypeProperty ;
+                       rdfs:domain sosa:Observation ;
+                       rdfs:range xsd:decimal ;
+                       rdfs:label "has observation window start in seconds"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AccelerationX
+:AccelerationX rdf:type owl:Class ;
+               rdfs:subClassOf :PhysiologicalProperty ;
+               rdfs:comment "Acceleration along the x-axis as a physiological or movement-related observable property."@en ;
+               rdfs:label "AccelerationX"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AccelerationY
+:AccelerationY rdf:type owl:Class ;
+               rdfs:subClassOf :PhysiologicalProperty ;
+               rdfs:comment "Acceleration along the y-axis as a physiological or movement-related observable property."@en ;
+               rdfs:label "AccelerationY"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AccelerationZ
+:AccelerationZ rdf:type owl:Class ;
+               rdfs:subClassOf :PhysiologicalProperty ;
+               rdfs:comment "Acceleration along the z-axis as a physiological or movement-related observable property."@en ;
+               rdfs:label "AccelerationZ"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Accelerometer
+:Accelerometer rdf:type owl:Class ;
+               rdfs:subClassOf :MotionSensor ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty sosa:observes ;
+                                 owl:someValuesFrom :AccelerationX
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty sosa:observes ;
+                                 owl:someValuesFrom :AccelerationY
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty sosa:observes ;
+                                 owl:someValuesFrom :AccelerationZ
+                               ] ;
+               rdfs:comment "A motion sensor used to measure acceleration."@en ;
+               rdfs:label "Accelerometer"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDescription ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDurationSeconds ;
+                            owl:someValuesFrom xsd:decimal
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasEndTimeSeconds ;
+                            owl:someValuesFrom xsd:decimal
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasIntensity ;
+                            owl:someValuesFrom xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasReference ;
+                            owl:someValuesFrom xsd:anyURI
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasStartTimeSeconds ;
+                            owl:someValuesFrom xsd:decimal
+                          ] ;
+          rdfs:comment "An activity or temporally bounded experimental segment that can provide context for observations in a stress experiment."@en ;
+          rdfs:label "Activity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AcuteStressor
+:AcuteStressor rdf:type owl:Class ;
+               rdfs:subClassOf :Stressor ;
+               rdfs:label "Acute Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AnnotationRecord
+:AnnotationRecord rdf:type owl:Class ;
+                  rdfs:subClassOf owl:Thing ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasAnnotationTimeStamp ;
+                                    owl:someValuesFrom xsd:dateTime
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasNote ;
+                                    owl:someValuesFrom xsd:string
+                                  ] ;
+                  rdfs:comment "A file or record containing annotations for phases in a stress experiment."@en ;
+                  rdfs:label "AnnotationRecord"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/AudioSensor
+:AudioSensor rdf:type owl:Class ;
+             rdfs:subClassOf sosa:Sensor ;
+             rdfs:comment "An audio-based sensor that can produce acoustic or speech-related observations in stress experiments."@en ;
+             rdfs:label "Audio Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Baseline
+:Baseline rdf:type owl:Class ;
+          rdfs:subClassOf :Activity ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasStressCondition ;
+                            owl:someValuesFrom :BaselineCondition
+                          ] ;
+          rdfs:comment "An initial no-stress reference phase that usually occurs before stress-inducing phases."@en ;
+          rdfs:label "Baseline"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/BaselineCondition
+:BaselineCondition rdf:type owl:Class ;
+                   rdfs:subClassOf :NoStressCondition ;
+                   rdfs:comment "A no-stress condition representing an initial baseline or reference state before stress-inducing phases."@en ;
+                   rdfs:label "Baseline Condition"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/BehavioralProperty
+:BehavioralProperty rdf:type owl:Class ;
+                    rdfs:subClassOf sosa:ObservableProperty ;
+                    rdfs:label "Behavioral Property"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/BiomarkerAssay
+:BiomarkerAssay rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasAssayTimestamp ;
+                                  owl:someValuesFrom xsd:dateTime
+                                ] ;
+                rdfs:comment "Can be a bloodsample test to test for cortisol or adrenalin values" ;
+                rdfs:label "Biomarker Assay"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/BloodOxygenSaturation
+:BloodOxygenSaturation rdf:type owl:Class ;
+                       rdfs:subClassOf :PhysiologicalProperty ;
+                       rdfs:comment "Peripheral oxygen saturation as a physiological observable property."@en ;
+                       rdfs:label "BloodOxygenSaturation"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/CameraSensor
+:CameraSensor rdf:type owl:Class ;
+              rdfs:subClassOf sosa:Sensor ;
+              rdfs:comment "A camera-based sensor that can produce visual observations in stress experiments."@en ;
+              rdfs:label "Camera Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/ChronicStressor
+:ChronicStressor rdf:type owl:Class ;
+                 rdfs:subClassOf :Stressor ;
+                 rdfs:label "Chronic Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/CognitiveStressPhase
+:CognitiveStressPhase rdf:type owl:Class ;
+                      rdfs:subClassOf :Activity ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasStressCondition ;
+                                        owl:someValuesFrom :CognitiveStressor
+                                      ] ;
+                      rdfs:comment "A phase labeled as cognitive stress."@en ;
+                      rdfs:label "Cognitive Stress Phase"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/CognitiveStressor
+:CognitiveStressor rdf:type owl:Class ;
+                   rdfs:subClassOf :AcuteStressor ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasAssociatedActivity ;
+                                     owl:someValuesFrom :CognitiveStressPhase
+                                   ] ;
+                   rdfs:comment "An acute stressor associated with cognitive stress tasks or phases."@en ;
+                   rdfs:label "Cognitive Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/EDASensor
+:EDASensor rdf:type owl:Class ;
+           rdfs:subClassOf :PhysiologicalSensor ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty sosa:observes ;
+                             owl:someValuesFrom :ElectrodermalActivity
+                           ] ;
+           rdfs:comment "A physiological sensor used to measure electrodermal activity."@en ;
+           rdfs:label "EDA Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/ElectrodermalActivity
+:ElectrodermalActivity rdf:type owl:Class ;
+                       rdfs:subClassOf :PhysiologicalProperty ;
+                       rdfs:comment "Electrodermal activity as a physiological observable property."@en ;
+                       rdfs:label "ElectrodermalActivity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Environment
+:Environment rdf:type owl:Class ;
+             rdfs:comment "An environment that is prevailing to an experimental segment that can provide context for observations in a stress experiment." ;
+             rdfs:label "Environment"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/EnvironmentalProperty
+:EnvironmentalProperty rdf:type owl:Class ;
+                       rdfs:subClassOf sosa:ObservableProperty ;
+                       rdfs:label "Environmental Property"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/ExperimenterObserver
+:ExperimenterObserver rdf:type owl:Class ;
+                      rdfs:subClassOf :HumanObserver ;
+                      rdfs:comment "An experimenter who records observations during a stress experiment."@en ;
+                      rdfs:label "Experiment Observer"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Gesture
+:Gesture rdf:type owl:Class ;
+         rdfs:subClassOf :BehavioralProperty ;
+         rdfs:comment "Gestures a subjects does while being observed" ;
+         rdfs:label "Gesture" .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/GyroSensor
+:GyroSensor rdf:type owl:Class ;
+            rdfs:subClassOf :MotionSensor ;
+            rdfs:comment "A motion sensor used to measure angular velocity or rotation."@en ;
+            rdfs:label "GyroSensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/HeartRate
+:HeartRate rdf:type owl:Class ;
+           rdfs:subClassOf :PhysiologicalProperty ;
+           rdfs:comment "Heart rate as a physiological observable property."@en ;
+           rdfs:label "HeartRate"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/HeartRateSensor
+:HeartRateSensor rdf:type owl:Class ;
+                 rdfs:subClassOf :PPGSensor ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty sosa:observes ;
+                                   owl:someValuesFrom :HeartRate
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty sosa:observes ;
+                                   owl:someValuesFrom :HeartRateVariability
+                                 ] ;
+                 rdfs:comment "A PPG-based sensor used to measure heart rate."@en ;
+                 rdfs:label "Heart Rate Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/HeartRateVariability
+:HeartRateVariability rdf:type owl:Class ;
+                      rdfs:subClassOf :PhysiologicalProperty ;
+                      rdfs:comment "Heart rate variability as a physiological observable property that can be derived from heart-rate or inter-beat interval data."@en ;
+                      rdfs:label "HeartRateVariability"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/HumanObserver
+:HumanObserver rdf:type owl:Class ;
+               rdfs:subClassOf :Observer ,
+                               sosa:Sensor ;
+               rdfs:comment "A human observer acting as a SOSA sensor by documenting visible or contextual observations during a stress experiment."@en ;
+               rdfs:label "Human Observer"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Humidity
+:Humidity rdf:type owl:Class ;
+          rdfs:subClassOf :EnvironmentalProperty ;
+          rdfs:comment "An environmental property describing humidity, which may influence perceived stress."@en ;
+          rdfs:label "Humidity"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Magnetometer
+:Magnetometer rdf:type owl:Class ;
+              rdfs:subClassOf :MotionSensor ;
+              rdfs:comment "A motion-related sensor used to measure magnetic field direction or orientation."@en ;
+              rdfs:label "Magnetometer"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Microphone
+:Microphone rdf:type owl:Class ;
+            rdfs:subClassOf :AudioSensor ;
+            rdfs:comment "A microphone used as an audio sensor in a stress experiment."@en ;
+            rdfs:label "Microphone"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/MotionSensor
+:MotionSensor rdf:type owl:Class ;
+              rdfs:subClassOf sosa:Sensor ;
+              rdfs:comment "A sensor used to measure movement, orientation, or inertial motion."@en ;
+              rdfs:label "Motion Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/NoStressCondition
+:NoStressCondition rdf:type owl:Class ;
+                   rdfs:subClassOf :StressCondition ;
+                   owl:disjointWith :Stressor ;
+                   rdfs:comment "A condition in which no stressor is present or intended."@en ;
+                   rdfs:label "No Stress Condition"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Observer
+:Observer rdf:type owl:Class ;
+          rdfs:subClassOf :Person ;
+          rdfs:label "Observer" .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/OutsideTemperature
+:OutsideTemperature rdf:type owl:Class ;
+                    rdfs:subClassOf :EnvironmentalProperty ;
+                    rdfs:comment "An environmental property describing outside or ambient temperature, which may influence perceived stress."@en ;
+                    rdfs:label "Outside Temperature"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PPGSensor
+:PPGSensor rdf:type owl:Class ;
+           rdfs:subClassOf :PhysiologicalSensor ;
+           rdfs:comment "A photoplethysmography sensor that uses optical signals to measure physiological properties such as heart rate or blood oxygen saturation."@en ;
+           rdfs:label "PPG Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Person
+:Person rdf:type owl:Class ;
+        rdfs:label "Person"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PhysicalStressPhase
+:PhysicalStressPhase rdf:type owl:Class ;
+                     rdfs:subClassOf :Activity ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasStressCondition ;
+                                       owl:someValuesFrom :PhysicalStressor
+                                     ] ;
+                     rdfs:comment "A phase labeled as physical stress."@en ;
+                     rdfs:label "Physical Stress Phase"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PhysicalStressor
+:PhysicalStressor rdf:type owl:Class ;
+                  rdfs:subClassOf :AcuteStressor ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasAssociatedActivity ;
+                                    owl:someValuesFrom :PhysicalStressPhase
+                                  ] ;
+                  rdfs:comment "An acute stressor associated with physical stress tasks or phases."@en ;
+                  rdfs:label "Physical Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PhysiologicalProperty
+:PhysiologicalProperty rdf:type owl:Class ;
+                       rdfs:subClassOf sosa:ObservableProperty ;
+                       rdfs:label "Physiological Property"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PhysiologicalRecord
+:PhysiologicalRecord rdf:type owl:Class ;
+                     rdfs:comment "A data record containing one or more physiological or wearable signal channels."@en ;
+                     rdfs:label "Physiological Record"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/PhysiologicalSensor
+:PhysiologicalSensor rdf:type owl:Class ;
+                     rdfs:subClassOf sosa:Sensor ;
+                     rdfs:comment "A sensor used to measure physiological properties or bodily signals."@en ;
+                     rdfs:label "Physiological Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/RelaxationCondition
+:RelaxationCondition rdf:type owl:Class ;
+                     rdfs:subClassOf :NoStressCondition ;
+                     rdfs:comment "A no-stress condition representing relaxation or recovery between stress-inducing phases."@en ;
+                     rdfs:label "Relaxation Condition"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/RelaxationPhase
+:RelaxationPhase rdf:type owl:Class ;
+                 rdfs:subClassOf :Activity ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasStressCondition ;
+                                   owl:someValuesFrom :RelaxationCondition
+                                 ] ;
+                 rdfs:comment "A no-stress relaxation or recovery phase that can occur between stress-inducing phases."@en ;
+                 rdfs:label "Relaxation Phase"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/SignalChannel
+:SignalChannel rdf:type owl:Class ;
+               rdfs:comment "A single signal channel within a physiological or wearable data record."@en ;
+               rdfs:label "Signal Channel"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/SkinTemperature
+:SkinTemperature rdf:type owl:Class ;
+                 rdfs:subClassOf :PhysiologicalProperty ;
+                 rdfs:comment "Skin or body-surface temperature as a physiological observable property."@en ;
+                 rdfs:label "SkinTemperature"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/SocioEvaluativePhase
+:SocioEvaluativePhase rdf:type owl:Class ;
+                      rdfs:subClassOf :Activity ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasStressCondition ;
+                                        owl:someValuesFrom :SocioEvaluativeStressor
+                                      ] ;
+                      rdfs:comment "A phase labeled as socio-evaluative stress."@en ;
+                      rdfs:label "Socio-Evaluative Stress Phase"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/SocioEvaluativeStressor
+:SocioEvaluativeStressor rdf:type owl:Class ;
+                         rdfs:subClassOf :AcuteStressor ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasAssociatedActivity ;
+                                           owl:someValuesFrom :SocioEvaluativePhase
+                                         ] ;
+                         rdfs:comment "An acute stressor associated with socio-evaluative stress tasks or phases."@en ;
+                         rdfs:label "Socio-Evaluative Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/SpO2Sensor
+:SpO2Sensor rdf:type owl:Class ;
+            rdfs:subClassOf :PPGSensor ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty sosa:observes ;
+                              owl:someValuesFrom :BloodOxygenSaturation
+                            ] ;
+            rdfs:comment "A PPG-based sensor used to measure peripheral oxygen saturation."@en ;
+            rdfs:label "SpO2 Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/StressCondition
+:StressCondition rdf:type owl:Class ;
+                 rdfs:comment "A condition describing whether stress is induced, absent, or represented by a specific stressor context."@en ;
+                 rdfs:label "Stress Condition"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Stressor
+:Stressor rdf:type owl:Class ;
+          rdfs:subClassOf :StressCondition ;
+          rdfs:comment "A condition, event, stimulus, or situation that can induce stress."@en ;
+          rdfs:label "Stressor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/Subject
+:Subject rdf:type owl:Class ;
+         rdfs:subClassOf :Person ,
+                         sosa:FeatureOfInterest ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty schema:diagnosis ;
+                           owl:allValuesFrom schema:MedicalCondition
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty schema:drug ;
+                           owl:allValuesFrom schema:Drug
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty schema:healthCondition ;
+                           owl:allValuesFrom schema:MedicalCondition
+                         ] ;
+         rdfs:comment "A study subject represented as a person with patient-related Schema.org properties."@en ;
+         rdfs:label "Subject"@en ;
+         rdfs:seeAlso schema:Patient ,
+                      "https://schema.org/Patient" .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/TemperatureSensor
+:TemperatureSensor rdf:type owl:Class ;
+                   rdfs:subClassOf :PhysiologicalSensor ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty sosa:observes ;
+                                     owl:someValuesFrom :SkinTemperature
+                                   ] ;
+                   rdfs:comment "A physiological sensor used to measure skin or body-surface temperature."@en ;
+                   rdfs:label "Temperature Sensor"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/TimeSeriesObservation
+:TimeSeriesObservation rdf:type owl:Class ;
+                       rdfs:subClassOf sosa:Observation ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasTimestamp ;
+                                         owl:allValuesFrom xsd:dateTime
+                                       ] ;
+                       rdfs:comment "An observation derived from a physiological time-series signal. Time-series observations can be associated with timestamps using hasTimestamp."@en ;
+                       rdfs:label "TimeSeriesObservation"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/VideoCamera
+:VideoCamera rdf:type owl:Class ;
+             rdfs:subClassOf :CameraSensor ;
+             rdfs:comment "A video camera used as a visual sensor in a stress experiment."@en ;
+             rdfs:label "Video Camera"@en .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/WearableDevice
+:WearableDevice rdf:type owl:Class ;
+                rdfs:subClassOf sosa:Platform ;
+                rdfs:comment "A wearable platform that can host physiological or motion sensors."@en ;
+                rdfs:label "Wearable Device"@en .
+
+
+###  https://schema.org/Drug
+schema:Drug rdf:type owl:Class ;
+            rdfs:label "Drug"@en .
+
+
+###  https://schema.org/MedicalCondition
+schema:MedicalCondition rdf:type owl:Class ;
+                        rdfs:label "MedicalCondition"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/cognitiveStressor
+:cognitiveStressor rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/physicalStressor
+:physicalStressor rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/lennart/ontologies/2026/4/WISDOM-Stress/socioEvaluativeStressor
+:socioEvaluativeStressor rdf:type owl:NamedIndividual .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
