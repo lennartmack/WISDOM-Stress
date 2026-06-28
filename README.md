@@ -6,7 +6,7 @@ The main goal of WISDOM-Stress is to provide a structured semantic model that su
 
 ## Repository Contents
 
-This repository contains the main ontology, evaluation material, AI-generated comparison ontologies, and graphical module representations.
+This repository contains the main ontology, evaluation material, AI-generated comparison ontologies, graphical module representations, and selected sample data used as input for AI-supported ontology generation.
 
 ### Ontology
 
@@ -40,10 +40,18 @@ The AI-generated ontologies were produced based on different input strategies, i
 
 - ontology development standards
 - competency questions
-- example data from the application domain
+- sample subject data from the application domain
 - a combined input approach
 
-These ontologies were used to compare different modelling outcomes with the manually developed WISDOM-Stress ontology.
+The AI-generated ontologies were used to compare different modelling outcomes with the manually developed WISDOM-Stress ontology. The comparison focuses on modelling scope, conceptual structure, domain alignment, granularity, and the representation of wearable- and sensor-based stress experiment data.
+
+### AI Input Sample Data
+
+The folder `ai-input-sample-data` contains selected sample data that were used as input for AI-supported ontology generation.
+
+The sample data consist of example datasets from three subjects and were used to provide the AI system with concrete domain-specific input from wearable- and sensor-based stress experiment data. These data supported the generation of the sample-data-based ontology and the combined-input ontology.
+
+The purpose of including these files is to document the input basis used during the AI-supported ontology generation process and to make the comparative evaluation more transparent.
 
 ### Graphical Representations
 
@@ -62,6 +70,7 @@ The repository serves as a transparent documentation basis for:
 - technical and conceptual validation
 - comparison with AI-generated ontology variants
 - graphical representation of ontology modules
+- documentation of selected AI input material
 
 ## Evaluation Approach
 
@@ -73,7 +82,7 @@ Second, the ontology was evaluated using competency questions. The competency qu
 
 Third, selected competency questions were technically validated using SPARQL queries. This step was used to test whether relevant ontology structures can be queried explicitly.
 
-Finally, WISDOM-Stress was compared with four AI-generated ontologies to assess differences in modelling scope, structure, granularity, and domain alignment.
+Finally, WISDOM-Stress was compared with four AI-generated ontologies to assess differences in modelling scope, structure, granularity, and domain alignment. For two of these AI-generated ontologies, selected subject-based sample datasets were used as part of the input material.
 
 ## Technologies
 
